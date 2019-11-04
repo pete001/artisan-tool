@@ -134,7 +134,18 @@ class Artisan
      */
     public function makeCommand($command)
     {
-        return sprintf("php %s {$command}", base_path('artisan'));
+        $options = array_map('trim', explode("--", $command));
+
+        // Command values need to be escaped
+        foreach ($options as &$option) {
+            if (strpos($option, '=') !== false) {
+                $parts = explode('=', $option);
+                $option = $parts[0] . '=' . escapeshellarg($parts[1]);
+            }
+        }
+
+        $glue = implode(' --', $options);
+        return sprintf("php %s {$glue}", base_path('artisan'));
     }
 
     /**
