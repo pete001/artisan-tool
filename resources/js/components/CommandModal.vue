@@ -142,8 +142,11 @@ export default {
 
             Nova.request()
                 .get(
-                    '/nova-vendor/pragmarx/artisan-tool/artisan-tool-run/' +
-                        this._compiledCommand,
+                    '/nova-vendor/pragmarx/artisan-tool/artisan-tool-run', {
+                        params:{
+                            command:this._compiledCommand
+                        }
+                    }
                 )
                 .then(({ data }) => {
                     this.commands = data

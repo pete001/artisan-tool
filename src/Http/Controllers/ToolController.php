@@ -25,8 +25,8 @@ class ToolController extends Controller
         return app(Artisan::class)->readConsoleBuffer();
     }
 
-    public function run($command)
+    public function run()
     {
-        return app(Artisan::class)->run($command);
+        return app(Artisan::class)->run(request()->get('command'));
     }
 }

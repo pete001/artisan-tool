@@ -8,7 +8,7 @@ Route::get(
 );
 
 Route::get(
-    'artisan-tool-run/{command}',
+    'artisan-tool-run',
     \PragmaRX\ArtisanTool\Http\Controllers\ToolController::class . '@run'
 );
 
